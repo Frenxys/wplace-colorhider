@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "WPlace Color Hider",
+  "version": "1.0.0",
+  "description": "Extract and display all colors from WPlace color picker",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://wplace.live/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "WPlace Color Hider"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://wplace.live/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
