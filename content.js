@@ -385,13 +385,14 @@ async function loadDisabledColors() {
         const disabled = result.disabledColors || [];
         applyHiddenStyles(disabled);
         
-        // Try to add button with retry
-        if (!addColorHiderButton()) {
-            // If fails, retry after delay
-            setTimeout(addColorHiderButton, 500);
-            setTimeout(addColorHiderButton, 1000);
-            setTimeout(addColorHiderButton, 2000);
-        }
+        // Start continuous button search every 500ms permanently
+        setInterval(() => {
+            // Check if button still exists
+            if (!document.getElementById('wplace-color-hider-btn')) {
+                // Button not found, try to add it again
+                addColorHiderButton();
+            }
+        }, 500);
     } catch (error) {
         console.log('Error loading disabled colors:', error);
     }
@@ -418,11 +419,10 @@ if (document.readyState === 'loading') {
 }
 
 window.addEventListener('load', () => {
-    // Try to add button on load as well
-    setTimeout(() => {
-        if (!addColorHiderButton()) {
-            setTimeout(addColorHiderButton, 500);
-            setTimeout(addColorHiderButton, 1000);
+    // Start continuous search on load as well - permanent monitoring
+    setInterval(() => {
+        if (!document.getElementById('wplace-color-hider-btn')) {
+            addColorHiderButton();
         }
-    }, 100);
+    }, 500);
 });
