@@ -71,7 +71,7 @@ function addColorHiderButton() {
     
     // Find the "Eyedropper" button div
     const eyedropperDiv = Array.from(document.querySelectorAll('.tooltip')).find(el => 
-        el.textContent.includes('Contagocce')
+        el.textContent.includes('Color Picker')
     );
     
     if (!eyedropperDiv) {
